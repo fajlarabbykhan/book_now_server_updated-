@@ -28,7 +28,7 @@ mongoose.connection.on("connected", () => {
 
 //middlewares
 // app.use(cors());
-// app.use(express.json());
+app.use(express.json());
 app.use("/server/auth", authRoute);
 app.use("/server/hotels", hotelsRoute);
 app.use("/server/rooms", roomsRoute);
