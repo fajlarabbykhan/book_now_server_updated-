@@ -34,6 +34,17 @@ app.use("/server/hotels", hotelsRoute);
 app.use("/server/rooms", roomsRoute);
 app.use("/server/users", usersRoute);
 
+app.use((err, req, res, next) => {
+  const errorStatus = err.status || 500;
+  const errorMessage = err.message || "Somethig went wrong";
+  return res.status(errorStatus).json({
+    success: false,
+    status: errorStatus,
+    message: errorMessage,
+    stack: err.stack,
+  });
+});
+
 // app.get("/", (req, res) => {
 //   res.send("welcome to root");
 // });
